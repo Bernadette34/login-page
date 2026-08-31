@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  }
+
+body {
+margin: 0;
+min-height: 100vh;
+display: grid;
+place-items: center;
+padding: 30px;
+background: linear-gradient(135deg, #dbeafe, #e0f2fe, #eff6ff);
+color: #1e3a5f;
+}
+
+.final-container {
+width: min(750px, 100%);
+}
+
+.birthday-card {
+padding: 50px;
+text-align: center;
+background: rgba(255, 255, 255, 0.92);
+border: 1px solid #bfdbfe;
+border-radius: 30px;
+box-shadow: 0 20px 50px rgba(37, 99, 235, 0.18);
+}
+
+.small-text {
+margin-top: 0;
+color: #2563eb;
+font-weight: bold;
+letter-spacing: 1px;
+}
+
+h1 {
+margin-bottom: 35px;
+color: #1e3a8a;
+font-size: clamp(34px, 6vw, 55px);
+}
+
+.letter {
+text-align: left;
+color: #475569;
+font-size: 17px;
+line-height: 1.8;
+}
+
+.letter p {
+margin-bottom: 20px;
+}
+
+.final-message {
+color: #1e3a8a;
+font-size: 19px;
+font-weight: bold;
+}
+
+.signature {
+margin-top: 30px;
+text-align: right;
+color: #2563eb;
+font-weight: bold;
+}
+
+.balloons {
+margin-top: 35px;
+font-size: 30px;
+letter-spacing: 10px;
+}
+
+@media (max-width: 600px) {
+body {
+padding: 20px;
+}
+
+.birthday-card {
+padding: 35px 25px;
+}
+
+.letter {
+font-size: 16px;
+}
+}

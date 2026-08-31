@@ -1,0 +1,272 @@
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f2fe, #dbeafe, #eff6ff);
+  color: #1e3a5f;
+}
+
+.surprise-container {
+  width: min(850px, 90%);
+  margin: 0 auto;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* WELCOME SECTION */
+.welcome-section {
+  margin-bottom: 35px;
+}
+
+.small-text {
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 6vw, 52px);
+  color: #1e3a8a;
+}
+
+.intro {
+  max-width: 550px;
+  margin: 20px auto 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* QUESTION CARD */
+.question-card {
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #bfdbfe;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+}
+
+.food-emoji {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 45px;
+}
+
+.question-card h2 {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 28px;
+}
+
+.question-card > p {
+  color: #64748b;
+}
+
+/* FOOD BUTTONS */
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.choice {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #93c5fd;
+  border-radius: 15px;
+  background: #eff6ff;
+  color: #1e40af;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choice:hover {
+  transform: translateY(-3px);
+  background: #dbeafe;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+/* OTHERS */
+.choices > p {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  padding: 18px;
+  text-align: left;
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+  border-radius: 15px;
+  color: #1e3a8a;
+  font-weight: bold;
+}
+
+.choices input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+}
+
+.choices input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+#answer {
+  min-height: 25px;
+  margin-top: 25px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* MEMORIES SECTION */
+.memory-section {
+  padding: 55px 20px 20px;
+}
+
+.memory-section h2 {
+  margin: 10px 0;
+  color: #1e3a8a;
+  font-size: 28px;
+}
+
+.memory-section p:last-child {
+  color: #64748b;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .surprise-container {
+    padding: 40px 0;
+  }
+
+  .question-card {
+    padding: 30px 20px;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
+  }
+}
+
+.others {
+  grid-column: 1 / -1;
+  padding: 18px;
+  text-align: left;
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+  border-radius: 15px;
+}
+
+.others label {
+  display: block;
+  margin-bottom: 10px;
+  color: #1e3a8a;
+  font-weight: bold;
+}
+
+.other-input {
+  display: flex;
+  gap: 10px;
+}
+
+.other-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+#sendOther {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#sendOther:hover {
+  background: #1d4ed8;
+}
+
+.choice.selected {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+@media (max-width: 600px) {
+  .other-input {
+    flex-direction: column;
+  }
+}
+
+#continueButton {
+  margin-top: 15px;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#continueButton:hover {
+  background: #1d4ed8;
+}
+
+.availabilityButton {
+  margin: 5px;
+  padding: 12px 16px;
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #1e40af;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.availabilityButton:hover {
+  background: #dbeafe;
+  transform: translateY(-2px);
+}
+
+#availableTime {
+  padding: 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #1e3a8a;
+}
+
+#sendTime {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#sendTime:hover {
+  background: #1d4ed8;
+}
