@@ -45,7 +45,7 @@ const availability = button.dataset.answer;
     `;
 
     document.getElementById("continueButton").addEventListener("click", () => {
-      window.location.href = "/memories.html";
+      window.location.href = "memories.html";
     });
 
     return;
@@ -88,7 +88,7 @@ const availability = button.dataset.answer;
     `;
 
     document.getElementById("continueButton").addEventListener("click", () => {
-      window.location.href = "/memories.html";
+      window.location.href = "memories.html";
     });
   });
 });
