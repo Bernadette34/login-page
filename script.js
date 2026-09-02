@@ -8,7 +8,7 @@ form.addEventListener("submit", (event) => {
   const password = document.getElementById("password").value;
 
   const correctUsername = "bes";
-  const correctPassword = "secret";
+  const correctPassword = "baron";
 
   if (username === correctUsername && password === correctPassword) {
     message.textContent = "Login successful! 💙";
