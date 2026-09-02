@@ -43,7 +43,7 @@ const availability = button.dataset.answer;
         Continue to your surprise → 💙
       </button>
     `;
-
+    
     document.getElementById("continueButton").addEventListener("click", () => {
       window.location.href = "memories.html";
     });
