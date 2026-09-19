@@ -9,7 +9,7 @@ answer.innerHTML = `
 ${choice} it is! 😋<br><br>
 
 <strong>One more important question... 👀</strong><br>
-Are you available on September 11? 💙<br><br>
+Are you available on September 23? 💙<br><br>
 
 <button class="availabilityButton" data-answer="Yes, I'm free! 😌💙">
   YES, I'M FREE! 😌
