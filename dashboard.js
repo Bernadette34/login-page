@@ -3,8 +3,24 @@ const otherChoice = document.getElementById("otherChoice");
 const sendOther = document.getElementById("sendOther");
 const answer = document.getElementById("answer");
 
+// NEW
+const FORM_URL = "https://formspree.io/f/mwlppjdl";
+const response = { choice: "", availability: "", time: "" };
+
+// NEW
+function sendResponse() {
+  fetch(FORM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(response),
+    keepalive: true // lets the request finish even if the page navigates away
+  }).catch(err => console.error("Send failed:", err));
+}
+
 function askAvailability(choice) {
-answer.innerHTML = `
+  response.choice = choice; // NEW
+
+  answer.innerHTML = `
 <strong>YAYYY! 💙</strong><br>
 ${choice} it is! 😋<br><br>
 
@@ -24,105 +40,109 @@ Are you available on September 23? 💙<br><br>
 </button>
 
 <p id="availabilityMessage"></p>
-
 `;
 
-const availabilityButtons = document.querySelectorAll(".availabilityButton");
+  const availabilityButtons = document.querySelectorAll(".availabilityButton");
 
-availabilityButtons.forEach(button => {
-button.addEventListener("click", () => {
-const availability = button.dataset.answer;
+  availabilityButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const availability = button.dataset.answer;
+      response.availability = availability; // NEW
 
-  // If she is not available, don't ask for a time
-  if (availability === "No, I'm busy 😭") {
-    document.getElementById("availabilityMessage").innerHTML = `
-      Aww okay 😭💙 We'll find another day!
-      <br><br>
+      // If she is not available, don't ask for a time
+      if (availability === "No, I'm busy 😭") {
+        response.time = "N/A"; // NEW
+        sendResponse();        // NEW
 
-      <button id="continueButton">
-        Continue to your surprise → 💙
-      </button>
-    `;
-    
-    document.getElementById("continueButton").addEventListener("click", () => {
-      window.location.href = "memories.html";
-    });
+        document.getElementById("availabilityMessage").innerHTML = `
+          Aww okay 😭💙 We'll find another day!
+          <br><br>
 
-    return;
-  }
+          <button id="continueButton">
+            Continue to your surprise → 💙
+          </button>
+        `;
 
-  // Ask for the time if she chose YES or MAYBE
-  document.getElementById("availabilityMessage").innerHTML = `
-    <strong>Noted! 👀💙</strong><br>
-    You said: ${availability}<br><br>
+        document.getElementById("continueButton").addEventListener("click", () => {
+          window.location.href = "memories.html";
+        });
 
-    <strong>What time are you available? ⏰</strong><br><br>
+        return;
+      }
 
-    <input type="time" id="availableTime">
+      // Ask for the time if she chose YES or MAYBE
+      document.getElementById("availabilityMessage").innerHTML = `
+        <strong>Noted! 👀💙</strong><br>
+        You said: ${availability}<br><br>
 
-    <br><br>
+        <strong>What time are you available? ⏰</strong><br><br>
 
-    <button id="sendTime" type="button">
-      Send Time 💙
-    </button>
+        <input type="time" id="availableTime">
 
-    <p id="timeMessage"></p>
-  `;
+        <br><br>
 
-  document.getElementById("sendTime").addEventListener("click", () => {
-    const time = document.getElementById("availableTime").value;
+        <button id="sendTime" type="button">
+          Send Time 💙
+        </button>
 
-    if (time === "") {
-      document.getElementById("timeMessage").textContent =
-        "Choose a time first, Bes 😭💙";
-      return;
-    }
+        <p id="timeMessage"></p>
+      `;
 
-    document.getElementById("timeMessage").innerHTML = `
-      <strong>YAYYY! 💙</strong><br>
-      I'll remember that you're available at ${time}. 👀⏰<br><br>
+      document.getElementById("sendTime").addEventListener("click", () => {
+        const time = document.getElementById("availableTime").value;
 
-      <button id="continueButton">
-        Continue to your surprise → 💙
-      </button>
-    `;
+        if (time === "") {
+          document.getElementById("timeMessage").textContent =
+            "Choose a time first, Bes 😭💙";
+          return;
+        }
 
-    document.getElementById("continueButton").addEventListener("click", () => {
-      window.location.href = "memories.html";
+        response.time = time; // NEW
+        sendResponse();       // NEW
+
+        document.getElementById("timeMessage").innerHTML = `
+          <strong>YAYYY! 💙</strong><br>
+          I'll remember that you're available at ${time}. 👀⏰<br><br>
+
+          <button id="continueButton">
+            Continue to your surprise → 💙
+          </button>
+        `;
+
+        document.getElementById("continueButton").addEventListener("click", () => {
+          window.location.href = "memories.html";
+        });
+      });
     });
   });
-});
-
-});
 }
 
 choices.forEach(choice => {
-choice.addEventListener("click", () => {
-const selectedChoice = choice.textContent;
+  choice.addEventListener("click", () => {
+    const selectedChoice = choice.textContent;
 
-choices.forEach(button => {
-  button.classList.remove("selected");
-});
+    choices.forEach(button => {
+      button.classList.remove("selected");
+    });
 
-choice.classList.add("selected");
-otherChoice.value = "";
+    choice.classList.add("selected");
+    otherChoice.value = "";
 
-askAvailability(selectedChoice);
-
-});
+    askAvailability(selectedChoice);
+  });
 });
 
 sendOther.addEventListener("click", () => {
-const otherValue = otherChoice.value.trim();
+  const otherValue = otherChoice.value.trim();
 
-if (otherValue === "") {
-answer.textContent = "Type your choice first, Bes 😭💙";
-return;
-}
+  if (otherValue === "") {
+    answer.textContent = "Type your choice first, Bes 😭💙";
+    return;
+  }
 
-choices.forEach(button => {
-button.classList.remove("selected");
-});
+  choices.forEach(button => {
+    button.classList.remove("selected");
+  });
 
-askAvailability(otherValue);
+  askAvailability(otherValue);
 });
